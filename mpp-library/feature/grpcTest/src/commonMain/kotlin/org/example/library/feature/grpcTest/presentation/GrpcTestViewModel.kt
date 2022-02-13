@@ -16,5 +16,6 @@ class GrpcTestViewModel(
 ) : ViewModel(), EventsDispatcherOwner<GrpcTestViewModel.EventsListener> {
 
     interface EventsListener {
+        fun showMessage(message: String)
     }
 }
