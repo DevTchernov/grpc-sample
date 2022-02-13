@@ -7,6 +7,7 @@ repositories {
     google()
 
     gradlePluginPortal()
+    maven("https://jitpack.io")
 }
 
 dependencies {

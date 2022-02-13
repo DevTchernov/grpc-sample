@@ -45,6 +45,9 @@ testExtJunitVersion = "1.1.1"
 testCoreVersion = "1.3.0"
 robolectricVersion = "4.6.1"
 
+# wire
+wireVersion = "4.0.0-alpha.15"
+
 [libraries]
 # kotlin
 kotlinTestJUnit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlinVersion" }
@@ -124,3 +127,8 @@ mokoNetworkGeneratorGradle = { module = "dev.icerock.moko:network-generator", ve
 mokoUnitsGeneratorGradle = { module = "dev.icerock.moko:units-generator", version.ref = "mokoUnitsVersion" }
 kotlinSerializationGradle = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlinVersion" }
 hiltGradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltVersion" }
+
+# wire
+wireGradle = { module = "com.squareup.wire:wire-gradle-plugin", version.ref = "wireVersion"}
+wireRuntime = { module = "com.squareup.wire:wire-runtime", version.ref = "wireVersion"}
+wireGrpcClient = { module = "com.squareup.wire:wire-grpc-client", version.ref = "wireVersion"}

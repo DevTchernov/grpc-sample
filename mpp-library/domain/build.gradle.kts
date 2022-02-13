@@ -7,6 +7,7 @@ plugins {
     id("kotlin-parcelize")
     id("kotlinx-serialization")
     id("dev.icerock.mobile.multiplatform-network-generator")
+    id("com.squareup.wire")
 }
 
 dependencies {
@@ -20,10 +21,23 @@ dependencies {
 
     commonMainImplementation(libs.multiplatformSettings)
     commonMainImplementation(libs.napier)
+
+    commonMainImplementation(libs.wireGrpcClient)
+    commonMainImplementation(libs.wireRuntime)
 }
 
 mokoNetwork {
     spec("news") {
         inputSpec = file("src/openapi.yml")
+    }
+}
+
+wire {
+    sourcePath {
+        srcDir("./src/proto")
+    }
+    kotlin {
+        rpcRole = "client"
+        rpcCallStyle = "suspending"
     }
 }
