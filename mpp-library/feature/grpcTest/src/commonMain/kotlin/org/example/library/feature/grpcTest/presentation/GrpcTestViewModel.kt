@@ -15,6 +15,18 @@ class GrpcTestViewModel(
     private val repository: GrpcTestRepository
 ) : ViewModel(), EventsDispatcherOwner<GrpcTestViewModel.EventsListener> {
 
+    fun onMainButtonTap() {
+        viewModelScope.launch {
+            var message: String = ""
+            try {
+                message = repository.helloRequest("world")
+            } catch (exc: Exception) {
+                message = "Error: " + (exc.message ?: "Unknown error")
+            }
+            eventsDispatcher.dispatchEvent { showMessage(message) }
+        }
+    }
+
     interface EventsListener {
         fun showMessage(message: String)
     }
