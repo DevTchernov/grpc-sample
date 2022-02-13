@@ -5,4 +5,5 @@
 package org.example.library.feature.grpcTest.model
 
 interface GrpcTestRepository {
+    suspend fun helloRequest(word: String): String
 }
