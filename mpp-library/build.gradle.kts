@@ -28,6 +28,7 @@ dependencies {
     commonMainApi(projects.mppLibrary.domain)
     commonMainApi(projects.mppLibrary.feature.config)
     commonMainApi(projects.mppLibrary.feature.list)
+    commonMainApi(projects.mppLibrary.feature.grpcTest)
 
     commonTestImplementation(libs.mokoTestCore)
     commonTestImplementation(libs.mokoMvvmTest)
@@ -45,6 +46,7 @@ framework {
     export(projects.mppLibrary.domain)
     export(projects.mppLibrary.feature.config)
     export(projects.mppLibrary.feature.list)
+    export(projects.mppLibrary.feature.grpcTest)
 
     export(libs.multiplatformSettings)
     export(libs.napier)
