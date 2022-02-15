@@ -9,10 +9,10 @@ import org.example.library.feature.grpcTest.model.GrpcTestRepository
 import org.example.library.feature.grpcTest.presentation.GrpcTestViewModel
 
 class GrpcTestFactory(
+    private val repository: GrpcTestRepository
 ) {
     fun createViewModel(
         eventsDispatcher: EventsDispatcher<GrpcTestViewModel.EventsListener>,
-        repository: GrpcTestRepository
     ) = GrpcTestViewModel(
         eventsDispatcher = eventsDispatcher,
         repository = repository
