@@ -8,6 +8,7 @@ repositories {
 
     gradlePluginPortal()
     maven("https://jitpack.io")
+
 }
 
 dependencies {
@@ -15,4 +16,5 @@ dependencies {
     api("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
     api("com.android.tools.build:gradle:7.0.0")
     api("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.18.0")
+    api("com.squareup.wire:wire-gradle-plugin:4.0.0-alpha.15")
 }
