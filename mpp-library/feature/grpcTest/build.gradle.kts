@@ -9,4 +9,6 @@ plugins {
 dependencies {
     commonMainImplementation(libs.coroutines)
     androidMainImplementation(libs.lifecycleViewModel)
+    commonMainImplementation(libs.mokoMvvmCore)
+
 }
