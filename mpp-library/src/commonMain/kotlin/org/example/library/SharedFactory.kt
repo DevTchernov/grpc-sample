@@ -12,12 +12,18 @@ import dev.icerock.moko.resources.desc.ResourceFormatted
 import dev.icerock.moko.resources.desc.StringDesc
 import dev.icerock.moko.resources.desc.desc
 import dev.icerock.moko.units.TableUnitItem
+import io.grpc.examples.helloworld.HelloRequest
 import io.ktor.client.engine.HttpClientEngine
 import org.example.library.domain.di.DomainFactory
 import org.example.library.domain.entity.News
+import org.example.library.domain.repository.HelloWorldCallbackClient
+import org.example.library.domain.repository.HelloWorldSuspendClient
+import org.example.library.domain.repository.HelloWorldSuspendClientImpl
 import org.example.library.feature.config.di.ConfigFactory
 import org.example.library.feature.config.model.ConfigStore
 import org.example.library.feature.config.presentation.ConfigViewModel
+import org.example.library.feature.grpcTest.di.GrpcTestFactory
+import org.example.library.feature.grpcTest.model.GrpcTestRepository
 import org.example.library.feature.list.di.ListFactory
 import org.example.library.feature.list.model.ListSource
 import org.example.library.feature.list.presentation.ListViewModel
@@ -27,20 +33,23 @@ class SharedFactory(
     antilog: Antilog,
     baseUrl: String,
     newsUnitsFactory: NewsUnitsFactory,
-    httpClientEngine: HttpClientEngine?
+    httpClientEngine: HttpClientEngine?,
+    private val helloWorldClient: HelloWorldSuspendClient
 ) {
     // special for iOS call side we not use argument with default value
     constructor(
         settings: Settings,
         antilog: Antilog,
         baseUrl: String,
-        newsUnitsFactory: NewsUnitsFactory
+        newsUnitsFactory: NewsUnitsFactory,
+        helloWorldCallbackClient: HelloWorldCallbackClient
     ) : this(
         settings = settings,
         antilog = antilog,
         baseUrl = baseUrl,
         newsUnitsFactory = newsUnitsFactory,
-        httpClientEngine = null
+        httpClientEngine = null,
+        helloWorldClient = HelloWorldSuspendClientImpl(helloWorldCallbackClient)
     )
 
     private val domainFactory = DomainFactory(
@@ -105,6 +114,14 @@ class SharedFactory(
         },
         defaultToken = "ed155d0a445e4b4fbd878fe1f3bc1b7f",
         defaultLanguage = "us"
+    )
+
+    val grpcTestFactory = GrpcTestFactory(
+        repository = object : GrpcTestRepository {
+            override suspend fun helloRequest(word: String): String {
+                return helloWorldClient.sendHello(HelloRequest(word)).message
+            }
+        }
     )
 
     init {
