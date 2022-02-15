@@ -30,4 +30,6 @@ target 'ios-app' do
     :git => 'https://github.com/icerockdev/moko-mvvm.git', :tag => 'release/0.11.0'
   pod 'MultiPlatformLibraryUnits/Core',
     :git => 'https://github.com/icerockdev/moko-units.git', :tag => 'release/0.6.1'
+  pod 'gRPC-Swift', '~> 1.7.0'
+  pod 'gRPC-Swift-Plugins'
 end
