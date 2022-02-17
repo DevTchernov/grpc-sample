@@ -13,11 +13,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     let gRPCClient = HelloWorldCallbackBridge()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        
-        let request = HelloRequest(name: "AppDelegate", unknownFields: OkioByteString.companion.EMPTY)
-        gRPCClient.sendHello(message: request) { reply, error in
-            print("Reply: \(reply?.message) - Error: \(error?.message)")
-        }
+
         // create factory of shared module - it's main DI component of application.
         // Provide ViewModels of all features.
         // Input is platform-specific:
